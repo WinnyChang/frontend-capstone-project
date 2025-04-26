@@ -1,5 +1,5 @@
 * {
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     font-family: 'Noto Sans';
     font-size: 16px;
 }
@@ -55,6 +55,26 @@ h1 {
 .input input::placeholder {
     color: #7f838b;
 }
+.custom-select {
+    position: relative;
+}
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+.custom-select::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: 62%;
+    right: 20px;
+    transform: rotate(45deg); /* Rotate to create a v shape */
+    border-bottom: 2px solid #7f838b;
+    border-right: 2px solid #7f838b;
+    pointer-events: none;
+}
 
 button {
     width: 100%;
@@ -64,14 +84,16 @@ button {
     color: white;
     border: none;
     border-radius: 8px;
+    transition: 0.25s;
 }
 button:hover {
+    background-color: #375054;
     cursor: pointer;
 }
 
 .member {
     display: flex;
-    gap: 20px;
+    gap: 12px;
     justify-content: center;
 }
 .member p {
@@ -84,6 +106,7 @@ button:hover {
     margin: 0;
     padding: 0;
     color: #48696e;
+    font-weight: 500;
 }
 .member a:hover {
     text-decoration: underline;
