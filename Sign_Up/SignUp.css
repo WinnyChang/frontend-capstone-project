@@ -13,7 +13,7 @@ html, body, .container {
     align-items: center;
 }
 
-.form {
+.form-container {
     width: 320px;
     padding: 36px 24px;
     background-color: white;
@@ -23,20 +23,19 @@ html, body, .container {
     flex-direction: column;
 }
 
+form {
+    width: 100%;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
 h1 {
-    margin: 0;
+    margin: 0 0 -2px;
     padding: 0;
     font-size: 20px;
     font-weight: 700;
     text-align: center;
-}
-
-.inputs {
-    width: 100%;
-    margin: 16px 0 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
 }
 .input {
     display: flex;
@@ -75,18 +74,35 @@ h1 {
     border-right: 2px solid #7f838b;
     pointer-events: none;
 }
-
-button {
+.password-input {
+    position: relative;
+}
+.password-input input {
+    padding-right: 48px; /* Ensure password doesn't overlap the eye icon */
+}
+.toggle-password {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 58%;
+    right: 16px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.btn {
     width: 100%;
     padding: 12px 24px;
-    margin-bottom: 12px;
+    margin-top: 18px;
     background-color: #48696e;
     color: white;
     border: none;
     border-radius: 8px;
     transition: 0.25s;
 }
-button:hover {
+.btn:hover {
     background-color: #375054;
     cursor: pointer;
 }
