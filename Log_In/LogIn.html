@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="./LogIn.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form>
+                <h1>Log In</h1>
+
+                <div class="input">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required placeholder="Enter your email"/>
+                </div>
+
+                <div class="input password-input">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required placeholder="Enter your password"/>
+                    <button type="button" class="toggle-password" title="Show password">
+                        <img src="../src/images/eye.png" alt="Show password" />
+                    </button>
+                </div>
+
+                <button class="btn" type="submit">Log In</button>
+            </form>
+
+            <div class="other-actions">
+                <p>Forgot password?<p>
+                <a href="../Sign_Up/SignUp.html">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.toggle-password');
+            const toggleImg = toggleBtn.querySelector('img');
+        
+            toggleBtn.addEventListener('click', function() {
+                const isPassword = passwordInput.type === 'password';
+                passwordInput.type = isPassword ? 'text' : 'password';
+                toggleImg.src = isPassword ? '../src/images/eye-off.png' : '../src/images/eye.png';
+                toggleImg.alt = isPassword ? 'Hide password' : 'Show password';
+                toggleBtn.title = isPassword ? 'Hide password' : 'Show password';
+            });
+        });
+    </script>
+</body>
+</html>
