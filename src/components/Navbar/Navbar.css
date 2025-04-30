@@ -48,7 +48,6 @@ a:visited {
 .btn a:hover {
     background-color:#f3f9fa;
     border-color: #77aeb6;
-    color: #48696e;
     cursor: pointer;
 }
 
