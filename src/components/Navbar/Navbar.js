@@ -22,7 +22,7 @@ function Navbar() {
                 aria-label="Toggle navigation"
                 onClick={handleHamburgerClick}
             >
-                {navOpen ? '✖' : '☰'}
+                {navOpen ? '×' : '☰'}
             </button>
             
             {/* Navigation links */}
