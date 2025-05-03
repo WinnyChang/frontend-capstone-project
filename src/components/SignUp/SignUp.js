@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './SignUp.module.css';
 import eyeOff from '../../images/eye-off.png'
 import eye from '../../images/eye.png'
@@ -32,7 +33,10 @@ function SignUp() {
 
                     <div className={styles.input}>
                         <label for='phone'>Phone</label>
-                        <input type='tel' name='phone' id='phone' required placeholder='Enter your phone number'/>
+                        <input 
+                            type='tel' name='phone' id='phone' required
+                            placeholder='Enter your phone number' pattern='[0-9]{10}'
+                        />
                     </div>
 
                     <div className={styles.input}>
@@ -65,7 +69,7 @@ function SignUp() {
 
                 <div className={styles.member}>
                     <p>Already a member?</p>
-                    <a href='../LogIn/LogIn.html'>Log in</a>
+                    <Link to='/log-in'>Log in</Link>
                 </div>
             </div>
         </div>

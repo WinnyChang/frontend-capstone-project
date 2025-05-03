@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './LogIn.module.css';
 import eyeOff from '../../images/eye-off.png'
 import eye from '../../images/eye.png'
@@ -46,7 +47,7 @@ function LogIn() {
 
                 <div class={styles['other-actions']}>
                     <p>Forgot password?</p>
-                    <a href='../SignUp/SignUp.html'>Sign up</a>
+                    <Link to='/sign-up'>Sign up</Link>
                 </div>
             </div>
         </div>
