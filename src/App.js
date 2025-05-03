@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import LandingPage from './components/LandingPage/LandingPage';
@@ -7,7 +8,7 @@ import LogIn from './components/LogIn/LogIn';
 
 function App() {
   return (
-    <div>
+    <div className='app-wrapper'>
         <BrowserRouter> {/* Set up BrowserRouter for routing */}
             <Navbar/>
             <Routes> {/* Set up the Routes for different pages */}
