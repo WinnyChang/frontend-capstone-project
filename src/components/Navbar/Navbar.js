@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './Navbar.css';
-import logo from "../../images/logo.png";
+import { Link } from 'react-router-dom';
+import styles from './Navbar.module.css';
+import logo from '../../images/logo.png';
 
 function Navbar() {
     const [navOpen, setNavOpen] = useState(false);
@@ -12,38 +13,38 @@ function Navbar() {
     return (
         <nav>
             {/* Logo */}            
-            <a href="/">
-                <img src={logo} alt="Stay Healthy logo" />
-            </a>
+            <Link to='/'>
+                <img src={logo} alt='Stay Healthy logo' />
+            </Link>
 
             {/* Menu icon (display on smaller screens) */}
             <button 
-                className="hamburger" 
-                aria-label="Toggle navigation"
+                className={styles.hamburger} 
+                aria-label='Toggle navigation'
                 onClick={handleHamburgerClick}
             >
                 {navOpen ? '×' : '☰'}
             </button>
             
             {/* Navigation links */}
-            <ul className={`nav_links ${navOpen ? 'open' : ''}`}>
-                <li className="nav_link">
-                    <a href="../LandingPage/LandingPage.html">Home</a>
+            <ul className={`${styles.nav_links} ${navOpen ? styles.open : ''}`}>
+                <li className={styles.nav_link}>
+                    <Link to='/'>Home</Link>
                 </li>
-                <li className="nav_link">
-                    <a href="#">Appointments</a>
+                <li className={styles.nav_link}>
+                    <Link to='#'>Appointments</Link>
                 </li>
-                <li className="nav_link">
-                    <a href="../LandingPage/LandingPage.html">Health Blog</a>
+                <li className={styles.nav_link}>
+                    <Link to='#'>Health Blog</Link>
                 </li>
-                <li className="nav_link">
-                    <a href="#">Reviews</a>
+                <li className={styles.nav_link}>
+                    <Link to='#'>Reviews</Link>
                 </li>
-                <li className="btn">
-                    <a href="../LogIn/LogIn.html">Log in</a>
+                <li className={styles.btn}>
+                    <Link to='/log-in'>Log in</Link>
                 </li>
-                <li className="btn">
-                    <a href="../SignUp/SignUp.html">Sign up</a>
+                <li className={styles.btn}>
+                    <Link to='/sign-up'>Sign up</Link>
                 </li>
             </ul>
         </nav>
