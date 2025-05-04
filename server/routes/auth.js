@@ -36,12 +36,13 @@ passport.deserializeUser(function (id, cb) {
     cb(null, id);
 });
 
-// Route 1: Registering A New User: POST: http://localhost:8181/api/auth/register. No Login Required
-router.post('/register',[
-    body('email', "Please Enter a Vaild Email").isEmail(),
-    body('name', "Username should be at least 4 characters.").isLength({ min: 4 }),
-    body('password', "Password Should Be At Least 8 Characters.").isLength({ min: 8 }),
-    body('phone', "Phone Number Should Be 10 Digits.").isLength({ min: 10 }),
+// Route 1: New User Sign-Up: POST: http://localhost:8181/api/auth/sign-up. No Login Required
+router.post('/sign-up',[
+    body('role', 'Role is required.').notEmpty(),
+    body('name', 'Username should be at least 4 characters.').isLength({ min: 4 }),
+    body('phone', 'Phone number should be 10 digits.').isLength({ min: 10 }),
+    body('email', 'Please enter a vaild email').isEmail(),
+    body('password', 'Password should be at least 8 characters.').isLength({ min: 8 }),
 ], async (req, res) => {
 
     const error = validationResult(req);
@@ -52,17 +53,18 @@ router.post('/register',[
     try {
         const checkMultipleUser1 = await UserSchema.findOne({ email : req.body.email });
         if(checkMultipleUser1){
-            return res.status(403).json({ error: "A User with this email address already exists" });
+            return res.status(403).json({ error: 'A user with this email address already exists.' });
         }
 
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(req.body.password, salt);
         
         const newUser =  await UserSchema.create({
-            email: req.body.email,
+            role: req.body.role,
             name: req.body.name,
-            password: hash,
             phone: req.body.phone,
+            email: req.body.email,
+            password: hash,
             createdAt: Date(),
         });
 
@@ -76,7 +78,7 @@ router.post('/register',[
 
     } catch (error) {
         console.error(error);
-        return res.status(500).send("Internal Server Error");
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
 
 });
