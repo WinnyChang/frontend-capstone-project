@@ -41,7 +41,7 @@ router.post('/sign-up',[
     body('role', 'Role is required.').notEmpty(),
     body('name', 'Username should be at least 4 characters.').isLength({ min: 4 }),
     body('phone', 'Phone number should be 10 digits.').isLength({ min: 10 }),
-    body('email', 'Please enter a vaild email').isEmail(),
+    body('email', 'Please enter a vaild email.').isEmail(),
     body('password', 'Password should be at least 8 characters.').isLength({ min: 8 }),
 ], async (req, res) => {
 
@@ -83,8 +83,9 @@ router.post('/sign-up',[
 
 });
 
-router.post('/login', [
-    body('email', "Please Enter a Vaild Email").isEmail(),
+// Route 2: Log in
+router.post('/log-in', [
+    body('email', 'Please enter a vaild email.').isEmail(),
 ], async (req, res) => {
 
     const errors = validationResult(req);
@@ -93,13 +94,8 @@ router.post('/login', [
     }
 
     try {
-      
-        const theUser = await UserSchema.findOne({ email: req.body.email }); // <-- Change req.body.username to req.body.name
-            // console.log('my',theUser.name);
-        // req.session.name=theUser.name
-        req.session.email = req.body.email; // <-- Change req.body.username to req.body.name
-        console.log(req.session.email);
-        // console.log(req.session.name);
+        const theUser = await UserSchema.findOne({ email: req.body.email });
+        req.session.email = req.body.email;
         if (theUser) {
             let checkHash = await bcrypt.compare(req.body.password, theUser.password);
             if (checkHash) {
@@ -111,15 +107,15 @@ router.post('/login', [
                 const authtoken = jwt.sign(payload, JWT_SECRET);
                 return res.status(200).json({ authtoken });
             } else {
-                return res.status(403).json({ error: "Invalid Credentials" });
+                return res.status(403).json({ error: 'Invalid Credentials' });
             }
         } else {
-            return res.status(403).json({ error: "Invalid Credentials" });
+            return res.status(403).json({ error: 'Invalid Credentials' });
         }
 
     } catch (error) {
         console.error(error);
-        return res.status(500).send("Internal Server Error");
+        return res.status(500).json({ error: 'Internal Server Error'});
     }
 });
 
