@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import './DoctorCardIC.css';
+import styles from './DoctorCardIC.module.css';
 import AppointmentFormIC from '../AppointmentFormIC/AppointmentFormIC'
 import { v4 as uuidv4 } from 'uuid';
 
@@ -30,20 +30,20 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
   };
 
   return (
-    <div className="doctor-card-container">
-      <div className="doctor-card-details-container">
-        <div className="doctor-card-profile-image-container">
+    <div className={styles['doctor-card-container']}>
+      <div className={styles['doctor-card-details-container']}>
+        <div className={styles['doctor-card-profile-image-container']}>
         <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"> <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/> </svg>
         </div>
-        <div className="doctor-card-details">
-          <div className="doctor-card-detail-name">{name}</div>
-          <div className="doctor-card-detail-speciality">{speciality}</div>
-          <div className="doctor-card-detail-experience">{experience} years experience</div>
-          <div className="doctor-card-detail-consultationfees">Ratings: {ratings}</div>
+        <div className={styles['doctor-card-details']}>
+          <div className={styles['doctor-card-detail-name']}>{name}</div>
+          <div className={styles['doctor-card-detail-speciality']}>{speciality}</div>
+          <div className={styles['doctor-card-detail-experience']}>{experience} years experience</div>
+          <div className={styles['doctor-card-detail-consultationfees']}>Ratings: {ratings}</div>
         </div>
         {/* for reference  */}
         {/* <div>
-              <button className='book-appointment-btn'>                    
+              <button className={styles['book-appointment-btn']}>                    
                 <div>Book Appointment</div>
               <div>No Booking Fee</div>
             </button>
@@ -51,11 +51,11 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
       </div>
 
 
-      <div className="doctor-card-options-container">
+      <div className={styles['doctor-card-options-container']}>
        <Popup
           style={{ backgroundColor: '#FFFFFF' }}
           trigger={
-            <button className={`book-appointment-btn ${appointments.length > 0 ? 'cancel-appointment' : ''}`}>
+            <button className={`${styles['book-appointment-btn']} ${appointments.length > 0 ? styles['cancel-appointment'] : ''}`}>
               {appointments.length > 0 ? (
                 <div>Cancel Appointment</div>
               ) : (
@@ -69,16 +69,16 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
           onClose={() => setShowModal(false)}
         >
           {(close) => (
-            <div className="doctorbg" style={{ height: '100vh', overflow: 'scroll' }}>
+            <div className={styles.doctorbg} style={{ height: '100vh', overflow: 'scroll' }}>
               <div>
-                <div className="doctor-card-profile-image-container">
+                <div className={styles['doctor-card-profile-image-container']}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"> <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/> </svg>
                 </div>
-                <div className="doctor-card-details">
-                  <div className="doctor-card-detail-name">{name}</div>
-                  <div className="doctor-card-detail-speciality">{speciality}</div>
-                  <div className="doctor-card-detail-experience">{experience} years experience</div>
-                  <div className="doctor-card-detail-consultationfees">Ratings: {ratings}</div>
+                <div className={styles['doctor-card-details']}>
+                  <div className={styles['doctor-card-detail-name']}>{name}</div>
+                  <div className={styles['doctor-card-detail-speciality']}>{speciality}</div>
+                  <div className={styles['doctor-card-detail-experience']}>{experience} years experience</div>
+                  <div className={styles['doctor-card-detail-consultationfees']}>Ratings: {ratings}</div>
                 </div>
               </div>
 
@@ -86,10 +86,10 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
                 <>
                   <h3 style={{ textAlign: 'center' }}>Appointment Booked!</h3>
                   {appointments.map((appointment) => (
-                    <div className="bookedInfo" key={appointment.id}>
+                    <div className={styles.bookedInfo} key={appointment.id}>
                       <p>Name: {appointment.name}</p>
                       <p>Phone Number: {appointment.phoneNumber}</p>
-                      <button onClick={() => handleCancel(appointment.id)}>Cancel Appointment</button>
+                      <button className={styles['modal-btn']} onClick={() => handleCancel(appointment.id)}>Cancel Appointment</button>
                     </div>
                   ))}
                 </>

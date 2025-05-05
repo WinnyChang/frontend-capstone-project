@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './InstantConsultation.css';
+import styles from './InstantConsultation.module.css';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import FindDoctorSearchIC from './FindDoctorSearchIC/FindDoctorSearchIC';
 import DoctorCardIC from './DoctorCardIC/DoctorCardIC';
@@ -60,24 +60,24 @@ const InstantConsultation = () => {
 
     return (
         <center>
-            <div  className="searchpage-container">
-            <FindDoctorSearchIC onSearch={handleSearch} />
-            <div className="search-results-container">
-            {isSearched ? (
-                <center>
-                    <h2>{filteredDoctors.length} doctors are available {searchParams.get('location')}</h2>
-                    <h3>Book appointments with minimum wait-time & verified doctor details</h3>
-                    {filteredDoctors.length > 0 ? (
-                    filteredDoctors.map(doctor => <DoctorCardIC className="doctorcard" {...doctor} key={doctor.name} />)
+            <div className={styles['searchpage-container']}>
+                <FindDoctorSearchIC onSearch={handleSearch} />
+                <div className={styles['search-results-container']}>
+                    {isSearched ? (
+                        <center>
+                            <h2>{filteredDoctors.length} doctors are available {searchParams.get('location')}</h2>
+                            <h3>Book appointments with minimum wait-time & verified doctor details</h3>
+                            {filteredDoctors.length > 0 ? (
+                                filteredDoctors.map(doctor => <DoctorCardIC className={styles.doctorcard} {...doctor} key={doctor.name} />)
+                            ) : (
+                                <p>No doctors found.</p>
+                            )}
+                        </center>
                     ) : (
-                    <p>No doctors found.</p>
+                        ''
                     )}
-                </center>
-                ) : (
-                ''
-                )}
+                </div>
             </div>
-        </div>
         </center>
     )
 }
