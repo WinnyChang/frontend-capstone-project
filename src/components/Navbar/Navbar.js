@@ -80,7 +80,7 @@ function Navbar() {
             {/* Display different content based on log-in state */}
             { isLoggedIn ? (
                 <>
-                    <p>{`Welcome, ${username}`}</p>
+                    <p className={styles.user}>{`Welcome, ${username}`}</p>
                     <li className={styles.btn}>
                         <button onClick={handleLogOut}>Log out</button>
                     </li>

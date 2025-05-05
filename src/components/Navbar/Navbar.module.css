@@ -59,6 +59,10 @@ a:visited {
     cursor: pointer;
 }
 
+.user {
+    white-space: nowrap;
+}
+
 .hamburger {
     display: none; /* Hide by default on large screens */
     font-size: 28px;
