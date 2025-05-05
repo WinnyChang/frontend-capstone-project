@@ -65,6 +65,9 @@ function Navbar() {
                     <Link to='/'>Home</Link>
                 </li>
                 <li className={styles.nav_link}>
+                    <Link to='/instant-consultation'>Consultation</Link>
+                </li>
+                <li className={styles.nav_link}>
                     <Link to='#'>Appointments</Link>
                 </li>
                 <li className={styles.nav_link}>
