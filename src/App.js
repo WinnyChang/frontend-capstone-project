@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import InstantConsultation from './components/InstantConsultation/InstantConsultation';
-import FindDoctorSearch from './components/FindDoctorSearch/FindDoctorSearch';
+import BookAppointment from './components/BookAppointment/BookAppointment';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
             <Routes> {/* Set up the Routes for different pages */}
                 <Route path='/' element={<LandingPage/>}/>
                 <Route path='/instant-consultation' element={<InstantConsultation />} />
-                <Route path='/appointments' element={<FindDoctorSearch />} />
+                <Route path='/appointments' element={<BookAppointment />} />
                 <Route path='/log-in' element={<LogIn/>}/>
                 <Route path='/sign-up' element={<SignUp/>}/>
             </Routes>

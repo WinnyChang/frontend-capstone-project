@@ -1,13 +1,4 @@
-.searchpage-container {
-    width: 100%;
-    margin-top: 65px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.searchpage-container h1 {
+.find-doctor h1 {
     color: #375054;
     font-size: 36px;
     font-weight: 800;
