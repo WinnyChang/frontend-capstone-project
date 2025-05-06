@@ -2,18 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import styles from './DoctorCard.module.css';
-import AppointmentFormIC from '../InstantConsultation/AppointmentFormIC/AppointmentFormIC'
+import AppointmentForm from '../AppointmentForm/AppointmentForm'
 import { v4 as uuidv4 } from 'uuid';
 import star from '../../images/star.png';
-
 
 const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
   const [showModal, setShowModal] = useState(false);
   const [appointments, setAppointments] = useState([]);
-
-  const handleBooking = () => {
-    setShowModal(true);
-  };
 
   const handleCancel = (appointmentId) => {
     const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
@@ -94,15 +89,17 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
                         </div>
 
                         {appointments.length === 0 ? (
-                            <AppointmentFormIC doctorName={name} doctorSpeciality={speciality} onSubmit={handleFormSubmit} />
+                            <AppointmentForm doctorName={name} doctorSpeciality={speciality} onSubmit={handleFormSubmit} />
                         ) : (
                             <>
                                 <div className={styles['patient-info']}>
-                                    <h2 className={styles.patient}>Scheduled patient</h2>
+                                    <h2 className={styles.patient}>Scheduled Appointment</h2>
                                     {appointments.map((appointment) => (
                                         <div key={appointment.id}>
                                             <p>Name: {appointment.name}</p>
                                             <p>Phone: {appointment.phone}</p>
+                                            <p>Date: {appointment.date}</p>
+                                            <p>Time: {appointment.time}</p>
                                             <button 
                                                 className={`${styles['book-btn']} ${styles['cancel-btn']}`} 
                                                 onClick={() => handleCancel(appointment.id)}

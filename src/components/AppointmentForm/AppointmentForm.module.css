@@ -1,0 +1,57 @@
+.book {
+    display: flex;
+    margin: 0;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.input label {
+    font-weight: 500;
+}
+.input input, select {
+    padding: 12px 16px;
+    border: 1px solid #ccd0d7;
+    border-radius: 8px;
+    font-weight: 400;
+}
+.input input::placeholder {
+    color: #7f838b;
+}
+.custom-select {
+    position: relative;
+}
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+.custom-select::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: 62%;
+    right: 20px;
+    transform: rotate(45deg); /* Rotate to create a v shape */
+    border-bottom: 2px solid #7f838b;
+    border-right: 2px solid #7f838b;
+    pointer-events: none;
+}
+
+.book-btn {
+    width: 100%;
+    margin: 24px 0 0;
+    padding: 12px 24px;
+    font-weight: 500;
+    color: white;
+    background-color: #48696e;
+    border-radius: 8px;
+    border: none;
+    transition: background-color 0.25s ease;
+}
+.book-btn:hover {
+    background-color: #375054;
+}
