@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import InstantConsultation from './components/InstantConsultation/InstantConsultation';
+import FindDoctorSearch from './components/FindDoctorSearch/FindDoctorSearch';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
             <Navbar/>
             <Routes> {/* Set up the Routes for different pages */}
                 <Route path='/' element={<LandingPage/>}/>
-                <Route path='/sign-up' element={<SignUp/>}/>
-                <Route path='/log-in' element={<LogIn/>}/>
                 <Route path='/instant-consultation' element={<InstantConsultation />} />
+                <Route path='/appointments' element={<FindDoctorSearch />} />
+                <Route path='/log-in' element={<LogIn/>}/>
+                <Route path='/sign-up' element={<SignUp/>}/>
             </Routes>
         </BrowserRouter>
     </div>
