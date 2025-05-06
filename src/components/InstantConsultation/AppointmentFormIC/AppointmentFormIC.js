@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import styles from './AppointmentFormIC.module.css';;
 
 const AppointmentFormIC = ({ doctorName, doctorSpeciality, onSubmit }) => {
     const [name, setName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phone, setPhone] = useState('');
     const [selectedSlot, setSelectedSlot] = useState(null);
   
     const handleSlotSelection = (slot) => {
@@ -11,35 +12,31 @@ const AppointmentFormIC = ({ doctorName, doctorSpeciality, onSubmit }) => {
   
     const handleFormSubmit = (e) => {
       e.preventDefault();
-      onSubmit({ name, phoneNumber });
+      onSubmit({ name, phone });
       setName('');
-      setPhoneNumber('');
+      setPhone('');
     };
   
     return (
-      <form onSubmit={handleFormSubmit} className="appointment-form">
-        <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phoneNumber">Phone Number:</label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Book Now</button>
-      </form>
+        <form className={styles.book} onSubmit={handleFormSubmit}>
+            <div className={styles.input}>
+                <label htmlFor='name'>Name</label>
+                <input 
+                    type='text' name='name' id='name' required placeholder='Enter your name'
+                    value={name} onChange={e => setName(e.target.value)}
+                />
+            </div>
+
+            <div className={styles.input}>
+                <label htmlFor='phone'>Phone</label>
+                <input 
+                    type='tel' name='phone' id='phone' required
+                    placeholder='Enter your phone number' pattern='[0-9]{10}'
+                    value={phone} onChange={e => setPhone(e.target.value)}
+                />
+            </div>
+            <button className={styles['book-btn']} type="submit">Book Now</button>
+        </form>
     );
   };
 
