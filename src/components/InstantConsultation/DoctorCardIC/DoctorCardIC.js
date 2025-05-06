@@ -4,7 +4,7 @@ import 'reactjs-popup/dist/index.css';
 import styles from './DoctorCardIC.module.css';
 import AppointmentFormIC from '../AppointmentFormIC/AppointmentFormIC'
 import { v4 as uuidv4 } from 'uuid';
-import star from '../../../images/star.png';;
+import star from '../../../images/star.png';
 
 
 const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => {

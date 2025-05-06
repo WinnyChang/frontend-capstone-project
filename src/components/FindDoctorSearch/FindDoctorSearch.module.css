@@ -2,6 +2,9 @@
     width: 100%;
     margin-top: 65px;
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .searchpage-container h1 {
@@ -65,4 +68,22 @@
 }
 .specialty span {
     font-size: 16px;
+}
+
+.search-results-container {
+    width: 100%;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+.search-results-container center {
+    max-width: 1200px;
+}
+.search-results-container p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+.cards {
+    margin-top: 20px;
 }

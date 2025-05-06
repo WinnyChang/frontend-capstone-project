@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import styles from './FindDoctorSearch.module.css';
 import { useNavigate } from 'react-router-dom';
+import DoctorCard from '../DoctorCard/DoctorCard';
 import search from '../../images/search.png';
+import carter from '../../images/dentist-Carter.jpg';
+import dalton from '../../images/dentist-Dalton.jpg';
+import keller from '../../images/dentist-Keller.jpg';
 
 const initSpeciality = [
     'Dentist', 'Gynecologist/obstetrician', 'General Physician'
@@ -44,6 +48,36 @@ const FindDoctorSearch = () => {
                     </div>
                 </div>
             </center>
+
+            <div className={styles['search-results-container']}>
+                <center>
+                    <p>3 doctors available.</p>
+                    <p>Book an apppointment with minimum wait-time & verified doctor details.</p>
+                    <div className={styles.cards}>
+                        <DoctorCard 
+                            name='Dr. Emily Carter'
+                            specialty='Dentist'
+                            experience={16}
+                            ratings='⭐⭐⭐⭐⭐'
+                            profilePic={carter}
+                        />
+                        <DoctorCard 
+                            name='Dr. James Dalton'
+                            specialty='Dentist'
+                            experience={11}
+                            ratings='⭐⭐⭐⭐'
+                            profilePic={dalton}
+                        />
+                        <DoctorCard 
+                            name='Dr. Brian Keller'
+                            specialty='Dentist'
+                            experience={12}
+                            ratings='⭐⭐⭐⭐'
+                            profilePic={keller}
+                        />
+                    </div>
+                </center>
+            </div>
         </div>
     )
 }

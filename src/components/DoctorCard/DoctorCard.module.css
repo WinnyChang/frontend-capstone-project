@@ -1,0 +1,93 @@
+.card-container {
+    width: 320px;
+    border: 1px solid #ccc0d7;
+    border-radius: 8px;
+    overflow: hidden;
+    display: inline-block;
+    margin: 24px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+  
+.card-top {
+    width: 320px;
+    height: 240px;
+    background-color: #d9ebee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-bottom {
+    padding: 24px;
+}
+.doctor-name, .patient {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 6px;
+}  
+.doctor-speciality, .doctor-experience {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #62666c;
+}
+.doctor-ratings {
+    margin: 12px 0 24px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px
+}
+.book-btn {
+    width: 100%;
+    margin: 0;
+    padding: 12px 24px;
+    font-weight: 500;
+    color: white;
+    background-color: #48696e;
+    border-radius: 8px;
+    border: none;
+    transition: background-color 0.25s ease;
+}
+.book-btn:hover {
+    background-color: #375054;
+}
+.cancel-btn {
+    background-color: #8a6c00;
+}
+.cancel-btn:hover {
+    background-color: #695200;
+}
+
+/* Modal */
+.doctor-info {
+    margin-bottom: 24px;
+    border-bottom: 1px solid #ccc0d7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile-container {
+    margin: 24px 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-color: #d9ebee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.patient-info h2 {
+    text-align: center;
+}
+.patient-info p {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+.patient-info .book-btn {
+    margin-top: 24px;
+}
