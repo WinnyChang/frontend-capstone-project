@@ -4,6 +4,7 @@ import 'reactjs-popup/dist/index.css';
 import styles from './DoctorCardIC.module.css';
 import AppointmentFormIC from '../AppointmentFormIC/AppointmentFormIC'
 import { v4 as uuidv4 } from 'uuid';
+import star from '../../../images/star.png';;
 
 
 const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => {
@@ -30,40 +31,31 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
   };
 
   return (
-    <div className={styles['doctor-card-container']}>
-      <div className={styles['doctor-card-details-container']}>
-        <div className={styles['doctor-card-profile-image-container']}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"> <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/> </svg>
+    <div className={styles['card-container']}>
+        <div className={styles['card-top']}>
+            <svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' fill='#48696e' className='bi bi-person-fill' viewBox='0 0 16 16'> <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/> </svg>
         </div>
-        <div className={styles['doctor-card-details']}>
-          <div className={styles['doctor-card-detail-name']}>{name}</div>
-          <div className={styles['doctor-card-detail-speciality']}>{speciality}</div>
-          <div className={styles['doctor-card-detail-experience']}>{experience} years experience</div>
-          <div className={styles['doctor-card-detail-consultationfees']}>Ratings: {ratings}</div>
-        </div>
-        {/* for reference  */}
-        {/* <div>
-              <button className={styles['book-appointment-btn']}>                    
-                <div>Book Appointment</div>
-              <div>No Booking Fee</div>
+        <div className={styles['card-bottom']}>
+            <h2 className={styles['doctor-name']}>{name}</h2>
+            <p className={styles['doctor-speciality']}>{speciality}</p>
+            <p className={styles['doctor-experience']}>{experience} years experience</p>
+            <div className={styles['doctor-ratings']}>
+                {ratings.split('').map((char, index) =>
+                    char === '⭐' ? <img key={index} src={star} alt='Star' /> : null
+                )}
+            </div>
+            <button 
+                className={`${styles['book-btn']} ${appointments.length == 0 ? '' : styles['cancel-btn']}`}
+                onClick={() => setShowModal(true)}
+            >
+                {appointments.length == 0 ? 'Book Consultation' : 'Cancel Consultation'}
             </button>
-              </div> */}
-      </div>
+        </div>
 
 
       <div className={styles['doctor-card-options-container']}>
        <Popup
           style={{ backgroundColor: '#FFFFFF' }}
-          trigger={
-            <button className={`${styles['book-appointment-btn']} ${appointments.length > 0 ? styles['cancel-appointment'] : ''}`}>
-              {appointments.length > 0 ? (
-                <div>Cancel Appointment</div>
-              ) : (
-                <div>Book Appointment</div>
-              )}
-              <div>No Booking Fee</div>
-            </button>
-          }
           modal
           open={showModal}
           onClose={() => setShowModal(false)}
@@ -72,13 +64,13 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
             <div className={styles.doctorbg} style={{ height: '100vh', overflow: 'scroll' }}>
               <div>
                 <div className={styles['doctor-card-profile-image-container']}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"> <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/> </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16"> <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/> </svg>
                 </div>
                 <div className={styles['doctor-card-details']}>
-                  <div className={styles['doctor-card-detail-name']}>{name}</div>
-                  <div className={styles['doctor-card-detail-speciality']}>{speciality}</div>
-                  <div className={styles['doctor-card-detail-experience']}>{experience} years experience</div>
-                  <div className={styles['doctor-card-detail-consultationfees']}>Ratings: {ratings}</div>
+                  <h2 className={styles['doctor-name']}>{name}</h2>
+                  <p className={styles['doctor-speciality']}>{speciality}</p>
+                  <p className={styles['doctor-experience']}>{experience} years experience</p>
+                  <div className={styles['doctor-ratings']}>{ratings}</div>
                 </div>
               </div>
 
@@ -89,7 +81,7 @@ const DoctorCardIC = ({ name, speciality, experience, ratings, profilePic }) => 
                     <div className={styles.bookedInfo} key={appointment.id}>
                       <p>Name: {appointment.name}</p>
                       <p>Phone Number: {appointment.phoneNumber}</p>
-                      <button className={styles['modal-btn']} onClick={() => handleCancel(appointment.id)}>Cancel Appointment</button>
+                      <button className={styles['modal-btn']} onClick={() => handleCancel(appointment.id)}>Cancel Now</button>
                     </div>
                   ))}
                 </>

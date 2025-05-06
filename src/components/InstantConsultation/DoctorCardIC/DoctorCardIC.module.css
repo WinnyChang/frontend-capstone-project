@@ -1,54 +1,64 @@
-.doctor-card-container {
-    width: 300px;
-    height: 100%;
-    border: 1px solid #ccc;
+.card-container {
+    width: 320px;
+    border: 1px solid #ccc0d7;
     border-radius: 8px;
     overflow: hidden;
     display: inline-block;
-    margin: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  .cancel-appointment {
-    background-color: red;
-  }
+    margin: 24px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
   
-  .doctor-card-details-container {
-    padding: 20px;
-  }
-  
-  .doctor-card-profile-image-container {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .doctor-card-profile-image-container img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-  }
-  
-  .doctor-card-details {
-    text-align: center;
-  }
-  
-  .doctor-card-detail-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .doctor-card-detail-speciality {
+.card-top {
+    width: 320px;
+    height: 240px;
+    background-color: #d9ebee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-bottom {
+    padding: 24px;
+}
+.doctor-name {
     font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
-  .doctor-card-detail-experience {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 5px;
     font-weight: bold;
-  }
+    margin: 0 0 6px;
+}  
+.doctor-speciality, .doctor-experience {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #62666c;
+}
+.doctor-ratings {
+    margin: 12px 0 24px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px
+}
+.book-btn {
+    width: 100%;
+    margin: 0;
+    padding: 12px 24px;
+    font-weight: 500;
+    color: white;
+    background-color: #48696e;
+    border-radius: 8px;
+    border: none;
+    transition: background-color 0.25s ease;
+}
+.book-btn:hover {
+    background-color: #375054;
+}
+.cancel-btn {
+    background-color: #8a6c00;
+}
+.cancel-btn:hover {
+    background-color: #695200;
+}
   
   .doctor-card-detail-location,
   .doctor-card-detail-clinic,
@@ -61,7 +71,7 @@
     
   }
   
-  .book-appoinment-btn {
+.book-appoinment-btn {
     background-color: #3498db;
     color: #fff;
     border: none;
@@ -69,13 +79,20 @@
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-  }
+}
   
-  .book-appoinment-btn div:nth-child(2) {
+.book-appoinment-btn div:nth-child(2) {
     font-size: 12px;
     font-weight: bold;
   }
-  .modal-container {
+
+
+  .cancel-appointment {
+    background-color: red;
+ }
+
+
+.modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -185,3 +202,4 @@
   cursor: pointer;
   /* color: rgb(249, 60, 60); */
 }
+
