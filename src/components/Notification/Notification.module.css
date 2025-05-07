@@ -1,0 +1,19 @@
+.container {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    padding: 24px;
+    background-color: #c1dbff;
+    border-radius: 8px;
+}
+.container h2 {
+    margin: 0 0 12px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+.container p {
+    margin-bottom: 2px;
+    font-size: 14px;
+    font-weight: 500;
+}
