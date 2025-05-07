@@ -74,7 +74,7 @@ function Navbar() {
                     <Link to='#'>Health Blog</Link>
                 </li>
                 <li className={styles.nav_link}>
-                    <Link to='#'>Reviews</Link>
+                    <Link to='/reviews'>Reviews</Link>
                 </li>
 
             {/* Display different content based on log-in state */}
