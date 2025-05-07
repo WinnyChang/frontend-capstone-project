@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import styles from './DoctorCard.module.css';
@@ -13,17 +13,31 @@ const DoctorCard = ({ name, speciality, experience, ratings }) => {
   const handleCancel = (appointmentId) => {
     const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
     setAppointments(updatedAppointments);
+    setShowModal(false);
   };
 
   const handleFormSubmit = (appointmentData) => {
     const newAppointment = {
       id: uuidv4(),
+      doctorName: name,
+      dotorSpecialty: speciality,
       ...appointmentData,
     };
     const updatedAppointments = [...appointments, newAppointment];
     setAppointments(updatedAppointments);
     setShowModal(false);
   };
+  
+  // Save appointment data to local storage whenever it changes
+  useEffect(() => {
+      localStorage.setItem('appointments', JSON.stringify(appointments));
+  }, [appointments]);
+
+  // Load appointment data from local storage on component mount
+  useEffect(() => {
+    const saved = localStorage.getItem('appointments');
+    if (saved) setAppointments(JSON.parse(saved));
+  }, []);
 
   return (
     <div className={styles['card-container']}>
