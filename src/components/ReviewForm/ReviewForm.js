@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import styles from './ReviewForm.module.css';
+import { Rating } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 
 const initialRows = [
     {
@@ -25,7 +27,8 @@ const initialRows = [
 const ReviewForm = () => {
     const [rows, setRows] = useState(initialRows);
     const [activeRow, setActiveRow] = useState(null);
-    const [form, setForm] = useState({ preferredName: '', review: '' });
+    const [form, setForm] = useState({ preferredName: '', review: '', rating: 0 });
+    const [ratingError, setRatingError] = useState(false);
 
     // Open form for a specific row
     const handleGiveReview = (rowIdx) => {
@@ -39,9 +42,23 @@ const ReviewForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Rating validation (required field)
+        if (!form.rating || form.rating === 0) {
+            setRatingError(true);
+            return;
+        }
+        setRatingError(false);
+
         setRows(rows.map((row, idx) =>
           idx === activeRow
-            ? { ...row, review: form.review, preferredName: form.preferredName, disabled: true }
+            ? { 
+                ...row, 
+                review: form.review, 
+                preferredName: form.preferredName,
+                rating: form.rating,
+                disabled: true 
+            }
             : row
         ));
         setActiveRow(null);
@@ -80,7 +97,20 @@ const ReviewForm = () => {
                                 <td style={{ textAlign: 'left' }}>
                                     {row.review && (
                                         <>
-                                            <strong>{row.preferredName ? row.preferredName + ': ' : ''}</strong>{row.review}
+                                            <div className={styles['stars-value']}>
+                                                <Rating
+                                                    name='read-only'
+                                                    value={row.rating}
+                                                    readOnly
+                                                    size='large'
+                                                    icon={<StarIcon style={{ color: '#ffcc00' }} />}
+                                                    emptyIcon={<StarIcon style={{ color: '#dcdfe4' }} />}
+                                                />
+                                                <span className={styles['rating-value']}>{row.rating} / 5</span>
+                                            </div>
+                                            <div style={{ marginTop: '6px' }}>
+                                                <strong>{row.preferredName ? row.preferredName + ': ' : ''}</strong>{row.review}
+                                            </div>
                                         </>
                                     )}
                                 </td>
@@ -130,6 +160,31 @@ const ReviewForm = () => {
                             required
                             rows={6}
                         />
+                    </div>
+
+                    <div className={styles.input}>
+                        <label>Rating</label>
+                        <div className={styles['stars-value']}>
+                            <Rating
+                                name='rating'
+                                value={form.rating}
+                                onChange={(event, newValue) => {
+                                    setForm({ ...form, rating: newValue });
+                                    if (newValue) setRatingError(false);
+                                }}
+                                precision={0.5}
+                                size='large'
+                                icon={<StarIcon style={{ color: '#ffcc00' }} />}
+                                emptyIcon={<StarIcon style={{ color: '#dcdfe4' }} />}
+                            />
+                            <span className={styles['rating-value']}>{form.rating} / 5</span>
+                        </div>
+                        {ratingError && (
+                            <span style={{ color: '#e2483d', fontSize: '16px', fontWeight: '500'}}>
+                                Please select a rating.
+                            </span>
+                        )}
+
                     </div>
                     
                     <div className={styles.buttons}>
