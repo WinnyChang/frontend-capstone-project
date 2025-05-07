@@ -4,7 +4,9 @@
     bottom: 24px;
     padding: 24px;
     background-color: #c1dbff;
+    border: 1px solid #ccc0d7;
     border-radius: 8px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .container h2 {
     margin: 0 0 12px;

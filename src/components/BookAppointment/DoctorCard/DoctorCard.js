@@ -20,7 +20,7 @@ const DoctorCard = ({ name, speciality, experience, ratings }) => {
     const newAppointment = {
       id: uuidv4(),
       doctorName: name,
-      dotorSpecialty: speciality,
+      doctorSpecialty: speciality,
       ...appointmentData,
     };
     const updatedAppointments = [...appointments, newAppointment];
@@ -31,6 +31,7 @@ const DoctorCard = ({ name, speciality, experience, ratings }) => {
   // Save appointment data to local storage whenever it changes
   useEffect(() => {
       localStorage.setItem('appointments', JSON.stringify(appointments));
+      window.dispatchEvent(new Event('appointmentsChanged'))
   }, [appointments]);
 
   // Load appointment data from local storage on component mount
