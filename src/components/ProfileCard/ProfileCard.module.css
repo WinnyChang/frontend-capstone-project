@@ -1,0 +1,45 @@
+.nav_links {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    padding: 12px;
+    background-color: white;
+    border: 1px solid #e7e9ed;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: left;
+    align-items: left;
+    font-family: 'Noto Sans';
+    font-size: 16px;
+    font-weight: 500;
+}
+.nav_links.open {
+    display: flex;
+}
+a, button {
+    color: black;
+    text-decoration: none;
+    transition: 0.25s;
+    white-space: nowrap;
+}
+a:visited {
+    color: black;
+}
+.nav_link a {
+    padding: 10px;
+}
+.nav_link a:hover {
+    color: #48696e;
+}
+
+/* Position the dropdown to the left of user button on small screens */
+@media (max-width: 768px) {
+    .nav_links {
+        top: 0;
+        right: 105%;
+        left: auto;
+    }
+}

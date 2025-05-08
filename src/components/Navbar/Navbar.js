@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import logo from '../../images/logo.png';
+import ProfileCard from '../ProfileCard/ProfileCard';
 
 function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -82,10 +83,11 @@ function Navbar() {
             {/* Display different content based on log-in state */}
             { isLoggedIn ? (
                 <>
-                    <li className={styles.user}>
-                        <button onClick={handleUserClick}>{`Welcome, ${username}`}</button>
-                        { dropDownOpen ? (<></>) : (<>0</>)
-                        }
+                    <li className={styles.user} style={{ position : 'relative'}}>
+                        <button onClick={handleUserClick}>
+                            {`Welcome, ${username}`}
+                        </button>
+                        <ProfileCard dropDownOpen={dropDownOpen}/>
                     </li>
                     <li className={styles.btn}>
                         <button onClick={handleLogOut}>Log out</button>
