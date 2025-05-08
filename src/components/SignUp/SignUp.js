@@ -108,7 +108,7 @@ function SignUp() {
                             />
                         </button>
                     </div>
-                    {showerr && <div style={{ color: 'red', whiteSpace: 'pre-line' }}>{showerr}</div>}
+                    {showerr && <div style={{ color: '#e2483d', fontSize: '16px', fontWeight: '500', whiteSpace: 'pre-line' }}>{showerr}</div>}
 
                     <button className={styles.btn} type='submit'>Sign Up</button>
                 </form>
