@@ -12,7 +12,7 @@ function ProfileCard({ dropDownOpen }) {
                     <Link to='/profile'>Your Profile</Link>
                 </li>
                 <li className={styles.nav_link}>
-                    <Link to='/'>Your Reports</Link>
+                    <Link to='/reports'>Your Reports</Link>
                 </li>
             </ul>
         </div>

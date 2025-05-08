@@ -1,0 +1,63 @@
+.reports {
+    width: 100%;
+    padding: 95px 30px 30px;
+}
+.reports h1 {
+    color: #375054;
+    font-size: 36px;
+    font-weight: 800;
+    margin: 20px 0 25px;
+}
+.reports p {
+    color: #375054;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.table-container {
+    min-width: 360px;
+    max-width: 1000px;
+    margin: auto;
+    overflow-x: scroll;
+}
+
+.reports table {
+    width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+.reports table, th, td {
+    border-bottom: solid 1px #b3b9c4;
+    border-collapse: collapse;
+}
+.reports th {
+    height: 60px;
+    background-color: #d9ebee;
+    white-space: nowrap;
+}
+.reports th, td {
+    padding: 20px;
+}
+.report-cell {
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.reports button {
+    margin: 0;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background-color: #48696e;
+    border: none;
+    border-radius: 8px;
+    transition: 0.25s;
+}
+.reports button:hover {
+    background-color: #375054;
+}

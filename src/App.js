@@ -10,6 +10,7 @@ import BookAppointment from './components/BookAppointment/BookAppointment';
 import ReviewForm from './components/ReviewForm/ReviewForm';
 import Notification from './components/Notification/Notification';
 import ProfilePage from './components/ProfileCard/ProfilePage/ProfilePage';
+import ReportsPage from './components/ProfileCard/ReportsPage/ReportsPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path='/log-in' element={<LogIn/>}/>
                 <Route path='/sign-up' element={<SignUp/>}/>
                 <Route path='/profile' element={<ProfilePage/>}/>
+                <Route path='/reports' element={<ReportsPage/>}/>
             </Routes>
             <Notification />
         </BrowserRouter>
