@@ -62,6 +62,19 @@ a:visited {
 .user {
     white-space: nowrap;
 }
+.user button {
+    margin: 0;
+    padding: 6px 18px;
+    font-weight: 500;
+    color: black;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    transition-duration: 0.25s;
+}
+.user button:hover {
+    border: 1px solid #83bfc8;
+}
 
 .hamburger {
     display: none; /* Hide by default on large screens */

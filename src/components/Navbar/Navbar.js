@@ -10,6 +10,8 @@ function Navbar() {
 
     const [navOpen, setNavOpen] = useState(false);
     const handleHamburgerClick = () => setNavOpen(prev => !prev);
+    const [dropDownOpen, setDropDownOpen] = useState(false);
+    const handleUserClick = () => setDropDownOpen(prev => !prev);
     const navigate = useNavigate();
 
     const handleLogOut = () => {
@@ -80,7 +82,11 @@ function Navbar() {
             {/* Display different content based on log-in state */}
             { isLoggedIn ? (
                 <>
-                    <p className={styles.user}>{`Welcome, ${username}`}</p>
+                    <li className={styles.user}>
+                        <button onClick={handleUserClick}>{`Welcome, ${username}`}</button>
+                        { dropDownOpen ? (<></>) : (<>0</>)
+                        }
+                    </li>
                     <li className={styles.btn}>
                         <button onClick={handleLogOut}>Log out</button>
                     </li>
