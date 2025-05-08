@@ -185,44 +185,46 @@ router.get('/user', async (req, res) => {
         return res.status(500).send("Internal Server Error");
     }
 });
+
+// Route 5: Edit profile name or phone
 router.put('/user', [
-    body('name', "Username should be at least 4 characters").isLength({ min: 4 }),
-    body('phone', "Phone number should be 10 digits").isLength({ min: 10 }),
+    body('name', "Username should be at least 4 characters.").isLength({ min: 4 }),
+    body('phone', "Phone number should be 10 digits.").isLength({ min: 10 }),
     ], async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ errors: errors.array() });
         }
     
         try {
-        const email = req.headers.email; // Extract the email from the request headers
-    
-        if (!email) {
-            return res.status(400).json({ error: "Email not found in the request headers" });
-        }
-    
-        const existingUser = await UserSchema.findOne({ email });
-        if (!existingUser) {
-            return res.status(404).json({ error: "User not found" });
-        }
-    
-        existingUser.name = req.body.name;
-        existingUser.phone = req.body.phone;
-        existingUser.updatedAt = Date();
-    
-        const updatedUser = await existingUser.save();
-    
-        const payload = {
-            user: {
-            id: updatedUser.id,
-            },
-        };
-    
-        const authtoken = jwt.sign(payload, JWT_SECRET);
-        res.json({ authtoken });
-        } catch (error) {
-        console.error(error);
-        return res.status(500).send("Internal Server Error");
+            const email = req.headers.email; // Extract the email from the request headers
+        
+            if (!email) {
+                return res.status(400).json({ error: "Email not found in the request headers" });
+            }
+        
+            const existingUser = await UserSchema.findOne({ email });
+            if (!existingUser) {
+                return res.status(404).json({ error: "User not found" });
+            }
+        
+            existingUser.name = req.body.name;
+            existingUser.phone = req.body.phone;
+            existingUser.updatedAt = Date();
+        
+            const updatedUser = await existingUser.save();
+        
+            const payload = {
+                user: {
+                id: updatedUser.id,
+                },
+            };
+        
+            const authtoken = jwt.sign(payload, JWT_SECRET);
+            res.json({ authtoken });
+            } catch (error) {
+            console.error(error);
+            return res.status(500).send("Internal Server Error");
         }
 });
 

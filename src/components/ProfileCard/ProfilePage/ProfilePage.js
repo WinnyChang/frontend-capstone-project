@@ -7,6 +7,7 @@ const ProfilePage = () => {
   const [userDetails, setUserDetails] = useState({});
   const [updatedDetails, setUpdatedDetails] = useState({});
   const [editMode, setEditMode] = useState(false);
+  const [showerr, setShowerr] = useState('');
 
   const navigate = useNavigate();
   
@@ -61,6 +62,7 @@ const ProfilePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShowerr('');  // Clear previous errors
 
     try {
       const authtoken = sessionStorage.getItem('auth-token');
@@ -81,6 +83,7 @@ const ProfilePage = () => {
         },
         body: JSON.stringify(payload),
       });
+      const json = await response.json();
 
       if (response.ok) {
         // Update the user details in session storage
@@ -91,7 +94,12 @@ const ProfilePage = () => {
         setEditMode(false);
         // Display success message to the user
         alert(`Profile Updated Successfully!`);
-        navigate('/');
+        navigate('/profile');
+      } else if (json.errors) {
+        const errorMessages = Array.isArray(json.errors) 
+            ? json.errors.map(err => err.msg).join('\n')
+            : json.errors;
+            setShowerr(errorMessages);
       } else {
         throw new Error('Failed to update profile');
       }
@@ -102,43 +110,43 @@ const ProfilePage = () => {
 
   // Render based on mode (edit / read)
   return (
-    <div className={styles['profile-container']}>
-      {editMode ? (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Email
-            <input
-              type='email'
-              name='email'
+    <div className={styles.container}>
+      { editMode ? (
+        <form  className={styles.edit} onSubmit={handleSubmit}>
+          <h1>Edit Profile</h1>
+          <div className={styles.input}>
+            <label htmlFor='email'>Email</label>
+            <input 
+              type='email' name='email' id='email' disabled
               value={userDetails.email}
-              disabled // Disable the email field
             />
-          </label>
-          <label>
-            Name
-            <input
-            type="text"
-            name="name"
-            value={updatedDetails.name}
-            onChange={handleInputChange}
+          </div>
+          <div className={styles.input}>
+            <label htmlFor='name'>Name</label>
+            <input 
+              type='text' name='name' id='name' required placeholder='Enter your name'
+              value={updatedDetails.name} onChange={handleInputChange}
             />
-          </label>
-          <label>
-            Phone
-            <input
-            type="text"
-            name="phone"
-            value={updatedDetails.phone}
-            onChange={handleInputChange}
+          </div>
+          <div className={styles.input}>
+            <label htmlFor='phone'>Phone</label>
+            <input 
+              type='text' name='phone' id='phone' required placeholder='Enter your phone'
+              value={updatedDetails.phone} onChange={handleInputChange}
             />
-          </label>
+          </div>
+
+          {/* Display error message if name or phone isn't valid */}
+          {showerr && <div style={{ color: '#e2483d', fontSize: '16px', fontWeight: '500', whiteSpace: 'pre-line' }}>{showerr}</div>}
+          
           <button type='submit'>Save</button>
         </form>
       ) : (
-        <div className={styles['profile-details']}>
-          <h1>Welcome, {userDetails.name}</h1>
-            <p><b>Email:</b> {userDetails.email}</p>
-            <p><b>Phone:</b> {userDetails.phone}</p>
+        <div className={styles.read}>
+          <h1>Your Profile</h1>
+          <p><b>Email:</b> {userDetails.email}</p>
+          <p><b>Name:</b> {userDetails.name}</p>
+          <p><b>Phone:</b> {userDetails.phone}</p>
           <button onClick={handleEdit}>Edit</button>
         </div>
       )}
