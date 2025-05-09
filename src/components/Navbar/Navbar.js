@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import logo from '../../images/logo.png';
 import ProfileCard from '../ProfileCard/ProfileCard';
@@ -13,7 +13,9 @@ function Navbar() {
     const handleHamburgerClick = () => setNavOpen(prev => !prev);
     const [dropDownOpen, setDropDownOpen] = useState(false);
     const handleUserClick = () => setDropDownOpen(prev => !prev);
+    const dropDownRef = useRef();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogOut = () => {
         sessionStorage.removeItem('auth-token');
@@ -45,6 +47,29 @@ function Navbar() {
             setUsername(storedEmail.split('@')[0]);  // Extract username
         }
     }, []);
+
+    // Close dropdown on route change
+    useEffect(() => {
+        setDropDownOpen(false);
+    }, [location]);
+
+    // Close dropdown on outside click
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (
+                dropDownRef.current &&
+                !dropDownRef.current.contains(event.target)
+            ) {
+                setDropDownOpen(false);
+            }
+        }
+        if (dropDownOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dropDownOpen]);
 
     return (
         <nav>
@@ -83,11 +108,11 @@ function Navbar() {
             {/* Display different content based on log-in state */}
             { isLoggedIn ? (
                 <>
-                    <li className={styles.user} style={{ position : 'relative'}}>
+                    <li className={styles.user} style={{ position : 'relative'}} ref={dropDownRef}>
                         <button onClick={handleUserClick}>
                             {`Welcome, ${username}`}
                         </button>
-                        <ProfileCard dropDownOpen={dropDownOpen}/>
+                        <ProfileCard dropDownOpen={dropDownOpen} closeDropDown={() => setDropDownOpen(false)}/>
                     </li>
                     <li className={styles.btn}>
                         <button onClick={handleLogOut}>Log out</button>

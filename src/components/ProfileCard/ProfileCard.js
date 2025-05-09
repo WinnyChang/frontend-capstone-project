@@ -2,17 +2,16 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './ProfileCard.module.css';
 
-function ProfileCard({ dropDownOpen }) {
+function ProfileCard({ dropDownOpen, closeDropDown }) {
   return (
     <div>
-        {/* Navbar Dropdwon */}
         <div>
             <ul className={`${styles.nav_links} ${dropDownOpen ? styles.open : ''}`}>
                 <li className={styles.nav_link}>
-                    <Link to='/profile'>Your Profile</Link>
+                    <Link to='/profile' onClick={closeDropDown}>Your Profile</Link>
                 </li>
                 <li className={styles.nav_link}>
-                    <Link to='/reports'>Your Reports</Link>
+                    <Link to='/reports' onClick={closeDropDown}>Your Reports</Link>
                 </li>
             </ul>
         </div>
