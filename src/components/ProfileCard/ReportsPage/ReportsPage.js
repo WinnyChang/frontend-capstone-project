@@ -6,13 +6,13 @@ const rows = [
       date: '02-16-2025',
       doctorName: 'Dr. Megan Blake',
       doctorSpecialty: 'Dentist',
-      reportLink: '',
+      reportLink: '/02162025-WP16888-Report.pdf',
     },
     {
       date: '03-08-2025',
       doctorName: 'Dr. Thomas Reid',
       doctorSpecialty: 'Physical Therapist',
-      reportLink: '',
+      reportLink: '/03082025-WP16888-Report.pdf',
     }
 ];
 
@@ -39,12 +39,12 @@ const ReportsPage = () => {
                                 <td style={{ whiteSpace: 'nowrap' }}>{row.doctorSpecialty}</td>
                                 <td>
                                     <div className={styles['report-cell']}>
-                                        <button onClick={() => {}}>
+                                        <button onClick={() => window.open(row.reportLink, '_blank')}>
                                             View in New Tab
                                         </button>
-                                        <button onClick={() => {}}>
+                                        <a href={row.reportLink} download className={styles.download}>
                                             Download
-                                        </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
